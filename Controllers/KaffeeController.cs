@@ -6,13 +6,14 @@ namespace KaffeeMaschine.Controllers
     [Route("[controller]")]
     public class KaffeeController : ControllerBase
     {
-        Kaffee kaffee = new Kaffee(1.2, 0.8);
+        Kaffee kaffee;
 
         private readonly ILogger<KaffeeController> _logger;
 
-        public KaffeeController(ILogger<KaffeeController> logger)
+        public KaffeeController(ILogger<KaffeeController> logger, Kaffee argKaffee)
         {
             _logger = logger;
+            kaffee = argKaffee;
         }
 
         [HttpGet()]
