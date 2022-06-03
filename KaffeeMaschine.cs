@@ -4,8 +4,8 @@ namespace KaffeeMaschine
     {
         public double wasser { get; private set; }
         public double bohnen { get; private set; }
-        private double maxWasser = 1.0;
-        private double maxBohnen = 1.0;
+        private double maxWasser = 3.0;
+        private double maxBohnen = 3.0;
 
 
         public KaffeeMaschine(double argBohnen, double argWasser)
