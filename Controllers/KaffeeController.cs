@@ -13,7 +13,7 @@ namespace KaffeeMaschine.Controllers
         public KaffeeController(ILogger<KaffeeController> logger, KaffeeMaschine argKaffee)
         {
             _logger = logger;
-            kaffee = argKaffee;
+            
         }
 
         [HttpGet()]
@@ -26,7 +26,7 @@ namespace KaffeeMaschine.Controllers
 
         [HttpGet()]
         [Route("Bohnen")]
-        public double GetBohnenFüllstand()
+        public double GetBohnenFÃ¼llstand()
         {
             return kaffee.bohnen;
         }
