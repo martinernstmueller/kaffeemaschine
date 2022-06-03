@@ -1,14 +1,14 @@
 namespace KaffeeMaschine
 {
-    public class Kaffee
+    public class KaffeeMaschine
     {
         public double wasser { get; private set; }
         public double bohnen { get; private set; }
-        private double maxWasser = 2.5;
-        private double maxBohnen = 2.5;
+        private double maxWasser = 1.0;
+        private double maxBohnen = 1.0;
 
 
-        public Kaffee(double argBohnen, double argWasser)
+        public KaffeeMaschine(double argBohnen, double argWasser)
         {
             argBohnen = (argBohnen > maxBohnen) ? 2.5 :  argBohnen;
             argWasser = (argWasser > maxWasser) ? maxWasser : argWasser;
