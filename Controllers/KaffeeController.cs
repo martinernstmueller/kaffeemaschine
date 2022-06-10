@@ -37,6 +37,7 @@ namespace KaffeeMaschine.Controllers
 
         public double PutBohnen(double menge)
         {
+            kaffeelaager.fuellstand -= menge; 
             return kaffee.bohnenAuffuellen(menge);
 
         }
@@ -59,7 +60,6 @@ namespace KaffeeMaschine.Controllers
 
             if (retval == menge)
             {
-                kaffeelaager.fuellstand -= menge; // falsch!
                 return Ok("Restwasser: " + kaffee.wasser + ". Restbohnen: " + kaffee.bohnen + ".");
             }
 
