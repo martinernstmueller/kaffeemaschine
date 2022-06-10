@@ -9,6 +9,5 @@ namespace KaffeeMaschine
             fuellstand = argFuellstand;
          }
 
-     
     }
 }
