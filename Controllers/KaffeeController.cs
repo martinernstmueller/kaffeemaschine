@@ -13,14 +13,6 @@ namespace KaffeeMaschine.Controllers
             this.lager = lager;
         }
 
-        private readonly ILogger<KaffeeController> _logger;
-
-        public KaffeeController(ILogger<KaffeeController> logger)
-        {
-            _logger = logger;
-            
-        }
-
         [HttpGet()]
         [Route("Wasser")]
         public double GetWasserstand()
