@@ -42,9 +42,9 @@ namespace KaffeeMaschine.Controllers
 
         public String PutBohnen(double menge)
         {
-            kaffee.bohnenAuffuellen(menge);
+            double bohenaufgefuellt = kaffee.bohnenAuffuellen(menge);
 
-            return Kaffeelager.bohnenauffuellen(menge) + " Bohnen in der Maschine: " + kaffee.bohnen;
+            return Kaffeelager.bohnenauffuellen(bohenaufgefuellt) + " Bohnen in der Maschine: " + kaffee.bohnen;
 
 
         }
