@@ -3,7 +3,7 @@ using KaffeeMaschine;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSingleton(new KaffeeLager(1));
+builder.Services.AddSingleton(new KaffeeLager(2));
 builder.Services.AddControllers();
 
 builder.Services.AddControllers();
