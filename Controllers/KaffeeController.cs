@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using KaffeeMaschine;
 
 namespace KaffeeMaschine.Controllers
 {
@@ -8,12 +9,14 @@ namespace KaffeeMaschine.Controllers
     {
         static Kaffee kaffee = new Kaffee(1,1);
 
+        KaffeeLager kaffeeLager;
+
         private readonly ILogger<KaffeeController> _logger;
 
-        public KaffeeController(ILogger<KaffeeController> logger)
+        public KaffeeController(ILogger<KaffeeController> logger, KaffeeLager kaffeeLager)
         {
+            this.kaffeeLager = kaffeeLager;
             _logger = logger;
-            
         }
 
         [HttpGet()]
@@ -36,8 +39,9 @@ namespace KaffeeMaschine.Controllers
 
         public double PutBohnen(double menge)
         {
+            kaffeeLager.LagerKaffeeAuffüllen(-menge);
+            Console.WriteLine(kaffeeLager.getLagerKaffee());
             return kaffee.bohnenAuffuellen(menge);
-
         }
 
         [HttpPut()]
@@ -46,7 +50,6 @@ namespace KaffeeMaschine.Controllers
         public double PutWasser(double menge)
         {
             return kaffee.wasserAuffuellen(menge);
-
         }
 
         [HttpPut()]
