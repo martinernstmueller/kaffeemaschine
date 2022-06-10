@@ -6,14 +6,18 @@ namespace KaffeeMaschine.Controllers
     [Route("[controller]")]
     public class KaffeeController : ControllerBase
     {
-        static Kaffee kaffee = new Kaffee(1,1);
+        static Kaffee kaffee = new Kaffee(1, 1);
+        static Kaffeelager Kaffeelager = new Kaffeelager(0);
 
         private readonly ILogger<KaffeeController> _logger;
 
+
+
         public KaffeeController(ILogger<KaffeeController> logger)
         {
+
             _logger = logger;
-            
+
         }
 
         [HttpGet()]
@@ -31,17 +35,21 @@ namespace KaffeeMaschine.Controllers
             return kaffee.bohnen;
         }
 
+
+
         [HttpPut()]
         [Route("PutBohnen")]
 
-        public double PutBohnen(double menge)
+        public String PutBohnen(double menge)
         {
-            return kaffee.bohnenAuffuellen(menge);
+            kaffee.bohnenAuffuellen(menge);
+
+            return Kaffeelager.bohnenauffuellen(menge) + " Bohnen in der Maschine: " + kaffee.bohnen;
+
 
         }
 
         [HttpPut()]
-
         [Route("PutWasser")]
         public double PutWasser(double menge)
         {
@@ -50,7 +58,6 @@ namespace KaffeeMaschine.Controllers
         }
 
         [HttpPut()]
-
         [Route("MachKaffee")]
         public IActionResult MachKaffee(double menge, double verhaeltnisWasserBohnen)
         {
@@ -60,9 +67,28 @@ namespace KaffeeMaschine.Controllers
                 return Ok("Restwasser: " + kaffee.wasser + ". Restbohnen: " + kaffee.bohnen + ".");
             }
 
-            return Conflict("Not enough water or beens... please fill up first!");
+            return Conflict("Not enough water or beans... please fill up first!");
 
         }
+
+        [HttpGet()]
+        [Route("Kaffeelager")]
+        public double getLagerstand()
+        {
+            return Kaffeelager.Lagerstand;
+        }
+
+
+
+        [HttpPut()]
+        [Route("LagerAuffuellen")]
+        public double Lagerauffuellen(double menge)
+        {
+            return Kaffeelager.LagerAuffuellen(menge);
+
+        }
+
+
 
 
     }

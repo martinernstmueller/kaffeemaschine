@@ -27,7 +27,8 @@ namespace KaffeeMaschine
             double bohnenanfang = bohnen;
             bohnen = ((bohnen + menge) > maxBohnen) ? maxBohnen : bohnen + menge;
             double bohnenende = bohnen;
-            return bohnen;
+            double bohnenaufgefuellt = bohnenende - bohnenanfang;
+            return bohnenaufgefuellt;
         }
 
 
