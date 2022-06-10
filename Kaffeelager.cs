@@ -22,15 +22,15 @@ namespace KaffeeMaschine
 
 
 
-        public String bohnenauffuellen(double menge)
+        public String bohnenauffuellen(double bohenaufgefuellt)
         {
 
-            if (Lagerstand < menge)
+            if (Lagerstand < bohenaufgefuellt)
             {
                 return "Es sind nicht genügend Bohnen im Lager!";
 
             }
-            Lagerstand = Lagerstand - menge;
+            Lagerstand = Lagerstand - bohenaufgefuellt;
             return "Bohnen aufgefüllt, Lagerstand: " + Lagerstand;
         }
 
