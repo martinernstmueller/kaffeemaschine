@@ -14,7 +14,7 @@ namespace KaffeeMaschine.Controllers
         {
             _logger = logger;
             kaffeelaager = argLaager;
-            kaffee = argKaffee;
+            kaffee = argKaffe
         }
 
         [HttpGet()]
@@ -27,7 +27,7 @@ namespace KaffeeMaschine.Controllers
 
         [HttpGet()]
         [Route("Bohnen")]
-        public double GetBohnenFüllstand()
+        public double GetBohnenFÃ¼llstand()
         {
             return kaffee.bohnen;
         }
