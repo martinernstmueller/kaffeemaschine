@@ -42,7 +42,7 @@ namespace KaffeeMaschine.Controllers
         public double PutBohnen(double menge, Kaffeelager lager)
         {
             return kaffee.bohnenAuffuellen(menge, lager);
-
+            
         }
 
         [HttpPut()]
