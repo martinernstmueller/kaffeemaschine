@@ -22,9 +22,10 @@ namespace KaffeeMaschine
             return wasser;
         }
 
-        public double bohnenAuffuellen(double menge)
+        public double bohnenAuffuellen(double menge, Kaffeelager lager)
         {
             bohnen = ((bohnen + menge) > maxBohnen) ? maxBohnen : bohnen + menge;
+            lager.setLagerstand(lager.lagerstand + menge);
             return bohnen;
         }
 
