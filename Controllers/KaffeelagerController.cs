@@ -4,14 +4,14 @@ namespace KaffeeMaschine.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class KaffeeController : ControllerBase
+    public class KaffeelagerController : ControllerBase
     {
-        static Kaffee kaffee = new Kaffee(1,1);
+     
 
         private readonly Kaffeelager kaffeelager;
-        private readonly ILogger<KaffeeController> _logger;
+        private readonly ILogger<KaffeelagerController> _logger;
 
-        public KaffeeController(ILogger<KaffeeController> logger, Kaffeelager kaffeelager)
+        public KaffeelagerController(ILogger<KaffeelagerController> logger, Kaffeelager kaffeelager)
         {
             _logger = logger;
             this.kaffeelager = kaffeelager;
@@ -22,15 +22,15 @@ namespace KaffeeMaschine.Controllers
         [Route("Wasser")]
         public double GetWasserstand()
         {
-            return kaffee.wasser;
+            return kaffeelager.wasser;
         }
 
 
         [HttpGet()]
         [Route("Bohnen")]
-        public double GetBohnenFüllstand()
+        public double GetBohnenFÃ¼llstand()
         {
-            return kaffee.bohnen;
+            return kaffeelager.bohnen;
         }
 
         [HttpPut()]
@@ -38,8 +38,7 @@ namespace KaffeeMaschine.Controllers
 
         public double PutBohnen(double menge)
         {
-            kaffeelager.bohnenEntnehmen(menge);
-            return kaffee.bohnenAuffuellen(menge);
+            return kaffeelager.bohnenAuffuellen(menge);
 
         }
 
@@ -48,26 +47,9 @@ namespace KaffeeMaschine.Controllers
         [Route("PutWasser")]
         public double PutWasser(double menge)
         {
-            kaffeelager.wasserEntnehmen(menge);
-            return kaffee.wasserAuffuellen(menge);
+            return kaffeelager.wasserAuffuellen(menge);
 
         }
-
-        [HttpPut()]
-
-        [Route("MachKaffee")]
-        public IActionResult MachKaffee(double menge, double verhaeltnisWasserBohnen)
-        {
-            var retval = kaffee.machKaffee(menge, verhaeltnisWasserBohnen);
-            if (retval == menge)
-            {
-                return Ok("Restwasser: " + kaffee.wasser + ". Restbohnen: " + kaffee.bohnen + ".");
-            }
-
-            return Conflict("Not enough water or beens... please fill up first!");
-
-        }
-
 
     }
 }
