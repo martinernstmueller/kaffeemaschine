@@ -25,7 +25,7 @@ namespace KaffeeMaschine
         public double bohnenAuffuellen(double menge, Kaffeelager lager)
         {
             bohnen = ((bohnen + menge) > maxBohnen) ? maxBohnen : bohnen + menge;
-            lager.bohnenGelagert = (lager.bohnenGelagert - menge);
+            lager.bohnen = (lager.bohnen - menge);
             return bohnen;
         }
 
