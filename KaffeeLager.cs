@@ -7,8 +7,7 @@ namespace KaffeeMaschine
         public KaffeeLager(double argFuellstand)
         {
             fuellstand = argFuellstand;
-         }
-
-     
+        }
+ 
     }
 }
