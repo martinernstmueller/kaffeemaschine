@@ -7,10 +7,11 @@ namespace KaffeeMaschine.Controllers
     public class KaffeeController : ControllerBase
     {
         static Kaffee kaffee = new Kaffee(1,1);
+        KaffeeLager lager;
 
         private readonly ILogger<KaffeeController> _logger;
 
-        public KaffeeController(ILogger<KaffeeController> logger)
+        public KaffeeController(ILogger<KaffeeController> logger, KaffeeLager argLager)
         {
             _logger = logger;
             
@@ -31,12 +32,28 @@ namespace KaffeeMaschine.Controllers
             return kaffee.bohnen;
         }
 
+        [HttpGet()]
+        [Route("BohnenKaffeeLager")]
+        public double GetBohnenFüllstandKaffeeLager()
+        {
+            return lager.bohnen;
+        }
+
         [HttpPut()]
         [Route("PutBohnen")]
 
         public double PutBohnen(double menge)
         {
             return kaffee.bohnenAuffuellen(menge);
+
+        }
+
+        [HttpPut()]
+        [Route("PutBohnenKaffeeLager")]
+
+        public double PutBohnenKaffeeLager(double menge)
+        {
+            return lager.bohnenAuffuellenKaffeeLager(menge);
 
         }
 
