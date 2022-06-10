@@ -10,7 +10,7 @@ namespace KaffeeMaschine
 
         public Kaffee(double argBohnen, double argWasser)
         {
-            argBohnen = (argBohnen > maxBohnen) ? 2.5 :  argBohnen;
+            argBohnen = (argBohnen > maxBohnen) ? 2.5 : argBohnen;
             argWasser = (argWasser > maxWasser) ? maxWasser : argWasser;
             bohnen = argBohnen;
             wasser = argWasser;
@@ -24,7 +24,9 @@ namespace KaffeeMaschine
 
         public double bohnenAuffuellen(double menge)
         {
+            double bohnenanfang = bohnen;
             bohnen = ((bohnen + menge) > maxBohnen) ? maxBohnen : bohnen + menge;
+            double bohnenende = bohnen;
             return bohnen;
         }
 
@@ -32,7 +34,7 @@ namespace KaffeeMaschine
         public double machKaffee(double menge, double verhaeltnisWasserBohnen)
         {
             var mengeWasser = menge / 2 * verhaeltnisWasserBohnen;
-            var mengeBohnen = menge / 2 * (1/verhaeltnisWasserBohnen);
+            var mengeBohnen = menge / 2 * (1 / verhaeltnisWasserBohnen);
             if (wasser < mengeWasser)
                 return -1.0;
             if (bohnen < mengeBohnen)
