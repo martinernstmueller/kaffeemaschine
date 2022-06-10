@@ -7,13 +7,14 @@ namespace KaffeeMaschine.Controllers
     public class KaffeeController : ControllerBase
     {
         KaffeeMaschine kaffee;
-
+        KaffeeLaager kaffeelaager;
         private readonly ILogger<KaffeeController> _logger;
 
-        public KaffeeController(ILogger<KaffeeController> logger, KaffeeMaschine argKaffee)
+        public KaffeeController(ILogger<KaffeeController> logger, KaffeeMaschine argKaffee, KaffeeLaager argLaager)
         {
             _logger = logger;
-            
+            kaffeelaager = argLaager;
+            kaffee = argKaffe
         }
 
         [HttpGet()]
@@ -55,8 +56,10 @@ namespace KaffeeMaschine.Controllers
         public IActionResult MachKaffee(double menge, double verhaeltnisWasserBohnen)
         {
             var retval = kaffee.machKaffee(menge, verhaeltnisWasserBohnen);
+
             if (retval == menge)
             {
+                kaffeelaager.fuellstand -= menge; // falsch!
                 return Ok("Restwasser: " + kaffee.wasser + ". Restbohnen: " + kaffee.bohnen + ".");
             }
 
