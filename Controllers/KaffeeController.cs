@@ -8,12 +8,14 @@ namespace KaffeeMaschine.Controllers
     {
         static Kaffee kaffee = new Kaffee(1,1);
 
+private readonly Kaffeelager;
+
         private readonly ILogger<KaffeeController> _logger;
 
-        public KaffeeController(ILogger<KaffeeController> logger)
+        public KaffeeController(ILogger<KaffeeController> logger, Kaffeelager kaffeelager)
         {
             _logger = logger;
-            
+            this.kaffeelager = kaffeelager;
         }
 
         [HttpGet()]
@@ -26,7 +28,7 @@ namespace KaffeeMaschine.Controllers
 
         [HttpGet()]
         [Route("Bohnen")]
-        public double GetBohnenFüllstand()
+        public double GetBohnenFÃ¼llstand()
         {
             return kaffee.bohnen;
         }
@@ -36,6 +38,7 @@ namespace KaffeeMaschine.Controllers
 
         public double PutBohnen(double menge)
         {
+            kaffeelager.bohnenEntnehmen(menge);
             return kaffee.bohnenAuffuellen(menge);
 
         }
@@ -45,6 +48,7 @@ namespace KaffeeMaschine.Controllers
         [Route("PutWasser")]
         public double PutWasser(double menge)
         {
+            kaffeelager.wasserEntnehmen(menge);
             return kaffee.wasserAuffuellen(menge);
 
         }
